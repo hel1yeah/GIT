@@ -1,1 +1,9 @@
 
+body{
+  background-color: firebrick;
+}
+
+h1{
+  color: silver;
+  font-family: 'Courier New', Courier, sans-serif;
+}
