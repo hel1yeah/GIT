@@ -1,15 +1,20 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <SyncTest v-model:inputValue></SyncTest>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import SyncTest from "./components/SyncTest.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    SyncTest,
+  },
+  data() {
+    return {
+      inputValue: "test",
+    };
   },
 };
 </script>
