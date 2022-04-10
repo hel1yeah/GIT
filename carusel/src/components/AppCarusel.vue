@@ -28,9 +28,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .carusel {
-  max-width: 700px;
-  max-height: 525px;
-  height: 700px;
+  height: 100vh;
   background-color: #212534;
   margin: 0 auto;
   position: relative;
@@ -43,6 +41,7 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
   
   &__next,

@@ -2,12 +2,12 @@
   <div id="app" @touchstart="touchStart">
     <app-carusel @next="next" @prev="prev">
       <carusel-slide v-for="(slide, index) in slides" :key="`${slide}+${index}`" :index="index" :mainIndex="mainIndex"
-        :mainClass="slideClass(index)" :class="slideClass(index)">
+        :mainClass="slideClass(index)" :class="slideClass(index)" :img="slide.img">
 
-        <img :src="slide" :alt="slide" class="carusel__slide--img">
+
+        <!-- <img :src="'sdsd'" :alt="slide" class="carusel__slide--img"> -->
       </carusel-slide>
-    </app-carusel>
-  </div>
+    </app-carusel>  </div>
 </template>
 
 <script>
@@ -23,12 +23,12 @@ export default {
   data() {
     return {
       slides: [
-        'https://picsum.photos/id/237/200/440',
-        'https://picsum.photos/id/238/200/440',
-        'https://picsum.photos/id/239/200/440',
-        'https://picsum.photos/id/240/200/440',
-        'https://picsum.photos/id/241/200/440',
-        'https://picsum.photos/id/244/200/440',
+        { img: require('./assets/images/mashina.jpg') },
+        { img: require('./assets/images/mashina_sportkar.jpg') },
+        { img: require('./assets/images/mashina_staryj.jpg') },
+        { img: require('./assets/images/nadpis.jpg') },
+        { img: require('./assets/images/nochnoj.jpg') },
+        { img: require('./assets/images/squad.jpg') },
       ],
       mainIndex: 0,
     }
@@ -109,8 +109,14 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin: 60px auto 0;
+}
+
+*,
+html {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  background-color: #212534;
 }
 
 body {

@@ -1,10 +1,13 @@
 <template>
   <div class="carusel__slide">
-    <div class="slide">
-        <template v-if="mainClass === 'carusel__slide--main'">
-          <div class="slide__border"></div>
-          <div class="slide__shadow"></div>
-        </template>
+    <div class="slide" :style="[{ background: `url(${img})`, 'background-size': 'cover',
+    'background-position': 'center',
+    'background-repeat': 'no-repeat',
+    }]">
+      <template v-if="mainClass === 'carusel__slide--main'">
+        <div class="slide__border"></div>
+        <div class="slide__shadow"></div>
+      </template>
       <slot></slot>
     </div>
     </div>
@@ -13,7 +16,7 @@
 
 <script>
 export default {
-  props: ['mainIndex', 'mainClass'],
+  props: ['mainIndex', 'mainClass', 'img'],
   data() {
     return {
 
@@ -30,46 +33,52 @@ export default {
 }
 
 :root {
-  --card-height: 440px;
-  --card-width: 200px;
+  --card-height: 55vh;
+  --card-width: 25vw;
 }
 
 .carusel__slide {
   position: absolute;
   transition: .5s;
-
+  width: var(--card-width);
+  height: var(--card-height);
   &--img {
     border-radius: 6px;
   }
 
-  &--next {
-    z-index: 5;
-    top: 40px;
-    left: 70%;
-    transform: translateX(-50%) scale(0.7);
-  }
-
+  &--next,
   &--prev {
     z-index: 5;
-    top: 40px;
-    left: 30%;
-    transform: translateX(-50%) scale(0.7);
+    transform: translateX(-50%) translateY(-50%) scale(0.7);
+    opacity: .7;
+    top: 50%;
   }
 
+  &--next {
+    left: 70%;
+  }
+  &--prev {
+    left: 30%;
+  }
   &--main {
     z-index: 10;
-    top: 40px;
     left: 50%;
-    transform: translateX(-50%)
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
   }
 
   &--hidden {
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) scale(0.1);
+    transform: translateX(-50%) translateY(-50%) scale(0.1);
   }
 
   .slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     background: #191c29;
     position: relative;
     border-radius: 6px;
@@ -79,7 +88,6 @@ export default {
     display: flex;
     font-size: 1.5em;
     color: rgb(88 199 250 / 0%);
-    cursor: pointer;
     font-family: cursive;
   }
 
@@ -102,6 +110,8 @@ export default {
     top: calc(var(--card-height) / 6);
     left: 0;
     right: 0;
+    top: 0;
+    bottom: 0;
     z-index: -1;
     height: 100%;
     width: 100%;
