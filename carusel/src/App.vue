@@ -1,10 +1,10 @@
 <template>
   <div id="app" @touchstart="touchStart">
-    <app-carusel @next="next" @prev="prev" >
+    <app-carusel @next="next" @prev="prev">
       <carusel-slide v-for="(slide, index) in slides" :key="`${slide}+${index}`" :index="index" :mainIndex="mainIndex"
-        :class="slideClass(index)">
+        :mainClass="slideClass(index)" :class="slideClass(index)">
 
-        <img :src="slide" :alt="slide">
+        <img :src="slide" :alt="slide" class="carusel__slide--img">
       </carusel-slide>
     </app-carusel>
   </div>
