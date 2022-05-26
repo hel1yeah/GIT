@@ -1,13 +1,22 @@
 <template>
-  <div id="app" @touchstart="touchStart">
-    <app-carusel @next="next" @prev="prev">
-      <carusel-slide v-for="(slide, index) in slides" :key="`${slide}+${index}`" :index="index" :mainIndex="mainIndex"
-        :mainClass="slideClass(index)" :class="slideClass(index)" :img="slide.img">
-
-
-        <!-- <img :src="'sdsd'" :alt="slide" class="carusel__slide--img"> -->
+  <div id="app" 
+    @touchstart="touchStart" 
+    >
+    <app-carusel 
+      @next="next" 
+      @prev="prev"
+      >
+      <carusel-slide
+        @MoveSliderStart="MoveSliderStart" 
+        @MoveSlider="MoveSlider" 
+        v-for="(slide, index) in slides" 
+        :key="`${slide}+${index}`" 
+        :mainClass="slideClass(index)" 
+        :class="slideClass(index)" 
+        :img="slide.img">
       </carusel-slide>
-    </app-carusel>  </div>
+    </app-carusel>
+  </div>
 </template>
 
 <script>
@@ -31,6 +40,7 @@ export default {
         { img: require('./assets/images/squad.jpg') },
       ],
       mainIndex: 0,
+      screenX: null,
     }
   },
   computed: {
@@ -80,8 +90,19 @@ export default {
       }
       return 'carusel__slide--hidden'
     },
+    MoveSliderStart(e){
+      this.screenX = e?.screenX
+    },
+    MoveSlider(e){
+      if (this.screenX === e?.screenX) return 
+      if (this.screenX > e?.screenX) {
+        this.next()
+      } else {
+        this.prev()
+      }
+      this.screenX = null
+    },
     touchStart(e) {
-      console.log(e);
       if (e.changedTouches.length !== 1) {
         return
       }

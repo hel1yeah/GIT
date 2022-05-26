@@ -1,8 +1,8 @@
 <template>
   <div class="carusel">
     <slot></slot>
-    <button class="carusel__next" @click="next"><</button>
-    <button class="carusel__prev" @click="prev">></button>
+    <button class="carusel__next" @click="next"></button>
+    <button class="carusel__prev" @click="prev"></button>
   </div>
 </template>
 
@@ -10,9 +10,7 @@
 export default {
   name: 'AppCarusel',
   data() {
-    return {
-
-    }
+    return {}
   },
   methods: {
     next() {

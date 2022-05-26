@@ -1,9 +1,15 @@
 <template>
-  <div class="carusel__slide">
-    <div class="slide" :style="[{ background: `url(${img})`, 'background-size': 'cover',
-    'background-position': 'center',
-    'background-repeat': 'no-repeat',
-    }]">
+  <div class="carusel__slide"
+    @mousedown.stop="MoveSliderStart" 
+    @mouseup.stop="MoveSlider" 
+  >
+    <div class="slide" 
+      :style="[{
+        background: `url(${img})`, 
+        'background-size': 'cover',
+        'background-position': 'center',
+        'background-repeat': 'no-repeat',
+      }]">
       <template v-if="mainClass === 'carusel__slide--main'">
         <div class="slide__border"></div>
         <div class="slide__shadow"></div>
@@ -19,9 +25,16 @@ export default {
   props: ['mainIndex', 'mainClass', 'img'],
   data() {
     return {
-
     }
   },
+  methods: {
+    MoveSliderStart(e) {
+      this.$emit('MoveSliderStart', e);
+    },
+    MoveSlider(e) {
+      this.$emit('MoveSlider', e);
+    }
+  }
 }
 </script>
 
@@ -89,6 +102,7 @@ export default {
     font-size: 1.5em;
     color: rgb(88 199 250 / 0%);
     font-family: cursive;
+    cursor: pointer;
   }
 
   .slide__border {
