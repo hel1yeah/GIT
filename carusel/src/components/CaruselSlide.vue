@@ -1,7 +1,6 @@
 <template>
   <div class="carusel__slide"
     @mousedown.stop="MoveSliderStart" 
-    @mouseup.stop="MoveSlider" 
   >
     <div class="slide" 
       :style="[{
@@ -31,9 +30,6 @@ export default {
     MoveSliderStart(e) {
       this.$emit('MoveSliderStart', e);
     },
-    MoveSlider(e) {
-      this.$emit('MoveSlider', e);
-    }
   }
 }
 </script>
